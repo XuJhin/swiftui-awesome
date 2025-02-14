@@ -1,9 +1,10 @@
 import SwiftUI
 
-struct ActivityView: View {
+struct ActivitySummaryView: View {
     @State private var selectedCardIndex: Int? = 0
     @State private var selectedTimeRange: TimeRange = .week
     @State private var navigationPath = NavigationPath()
+    @StateObject private var viewModel = ActivitySummaryViewModel()
 
     var selectedCardType: SummaryCardType {
         guard let index = selectedCardIndex else { return .duration }
@@ -21,7 +22,7 @@ struct ActivityView: View {
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
                 .listRowSeparator(.hidden)
-                
+
                 WeeklyChartSection(
                     chartColor: selectedCardType.selectedColor,
                     timeRange: selectedTimeRange
@@ -29,13 +30,13 @@ struct ActivityView: View {
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
-                
+
                 SummarySection(selectedCardIndex: $selectedCardIndex)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
-                
-                HistorySection(navigationPath: $navigationPath)
+
+                HistorySection(navigationPath: $navigationPath, viewModel: viewModel)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
@@ -45,13 +46,13 @@ struct ActivityView: View {
             .background(Color(uiColor: .systemGroupedBackground))
             .navigationTitle("活动")
             .navigationBarTitleDisplayMode(.large)
-            .navigationDestination(for: ActivityRowData.self) { activity in
-                ActivityDetailView(activity: activity)
+            .navigationDestination(for: ActivityData.self) { activity in
+                DetailView(data: activity)
+            }
+            .onAppear {
+                viewModel.loadActivityData(for: selectedTimeRange)
             }
         }
     }
 }
 
-#Preview {
-    ActivityView()
-}

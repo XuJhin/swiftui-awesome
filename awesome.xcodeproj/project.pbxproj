@@ -14,9 +14,22 @@
 		43F915152D56FD4000BB1D80 /* awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		439DB3B02D5D8D5D001AD2A3 /* Exceptions for "awesome" folder in "awesome" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 43F915142D56FD4000BB1D80 /* awesome */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43F915172D56FD4000BB1D80 /* awesome */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				439DB3B02D5D8D5D001AD2A3 /* Exceptions for "awesome" folder in "awesome" target */,
+			);
 			path = awesome;
 			sourceTree = "<group>";
 		};
@@ -258,12 +271,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = awesome/awesome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"awesome/Preview Content\"";
 				DEVELOPMENT_TEAM = VCR47748YS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = awesome/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "此应用需要访问您的健康数据（步数、距离、卡路里等），以提供更好的运动记录功能";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "此应用需要写入您的健康数据（步数、卡路里等），以帮助您记录运动情况。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -287,12 +304,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = awesome/awesome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"awesome/Preview Content\"";
 				DEVELOPMENT_TEAM = VCR47748YS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = awesome/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "此应用需要访问您的健康数据（步数、距离、卡路里等），以提供更好的运动记录功能";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "此应用需要写入您的健康数据（步数、卡路里等），以帮助您记录运动情况。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -1,7 +1,8 @@
 import SwiftUI
+import HealthKit
 
 struct ActivityRow: View {
-    let activity: ActivityRowData
+    let activity: ActivityData
     let onTap: () -> Void
     @State private var isPressed = false
 
@@ -10,44 +11,41 @@ struct ActivityRow: View {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                 isPressed = true
             }
-            
+
             // 延迟执行导航
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                 onTap()
-                // 重置状态
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     isPressed = false
                 }
             }
         } label: {
             HStack {
-                // 图标
-                activity.icon
-                    .font(.system(size: 24))
+                activity.icon()
+                    .frame(width: 24, height: 24)
                     .foregroundColor(.black)
-
-                // 信息
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        Text(activity.title)
+                        Text("\(activity.niceDuration()) \(activity.activityName()) \(activity.appName())")
                             .font(.system(size: 17))
-                        Text(activity.duration)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.black)
+                            .bold()
                     }
 
                     HStack(spacing: 4) {
-                        Text(activity.dateString)
+                        Text(activity.startDate.format())
                             .font(.system(size: 12))
-                            .foregroundColor(.gray)
-
-                        ForEach(activity.badges, id: \.self) { badge in
-                            Text(badge)
-                                .font(.system(size: 12))
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 2)
-                                .background(Color.yellow.opacity(0.2))
-                                .cornerRadius(2)
-                        }
+                            .foregroundColor(.black)
+//                        if let badges = activity.badges {
+//                            ForEach(badges, id: \.self) { badge in
+//                                Text(badge)
+//                                    .font(.system(size: 12))
+//                                    .padding(.horizontal, 4)
+//                                    .padding(.vertical, 2)
+//                                    .background(Color.yellow.opacity(0.2))
+//                                    .cornerRadius(2)
+//                            }
+//                        }
                     }
                 }
 
@@ -64,14 +62,7 @@ struct ActivityRow: View {
             .cornerRadius(20)
             .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 1)
             .scaleEffect(isPressed ? 0.95 : 1)
-           
-           
         }
         .buttonStyle(.plain)
     }
-}
-
-#Preview {
-    ActivityRow(activity: ActivityRowData.activities[0], onTap: {})
-        .padding()
 }

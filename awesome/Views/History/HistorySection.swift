@@ -2,12 +2,13 @@ import SwiftUI
 
 struct HistorySection: View {
     @Binding var navigationPath: NavigationPath
-    
+    @StateObject var viewModel = ActivitySummaryViewModel()
+
     var body: some View {
         Section {
             VStack(alignment: .leading, spacing: 16) {
-                HistorySectionHeader()
-                ForEach(ActivityRowData.activities) { activity in
+                HistorySectionHeader(viewModel: viewModel)
+                ForEach(viewModel.workouts) { activity in
                     ActivityRow(activity: activity) {
                         navigationPath.append(activity)
                     }
@@ -22,18 +23,20 @@ struct HistorySection: View {
 }
 
 struct HistorySectionHeader: View {
+    @StateObject  var viewModel = ActivitySummaryViewModel()
+
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text("历史")
                     .font(.headline)
-                Text("65项活动")
+                Text("\(viewModel.workouts.count)项数据")
                     .font(.system(size: 14))
                     .foregroundColor(.gray)
             }
-            
+
             Spacer()
-            
+
             HStack(spacing: 16) {
                 Image(systemName: "star")
                 Image(systemName: "doc.text")

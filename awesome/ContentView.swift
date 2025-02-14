@@ -1,30 +1,17 @@
 //
-//  ContentView.swift
+//  Untitled.swift
 //  awesome
 //
-//  Created by dingstock on 2025/2/8.
+//  Created by dingstock on 2025/2/13.
 //
 
 import Charts
+import MapKit
 import SwiftUI
-
-
-import SplineRuntime
-import SwiftUI
-
 struct ContentView: View {
+    @State private var verticalOffset: CGFloat = 0.0
+
     var body: some View {
-        // fetching from cloud
-        let url = URL(string: "https://build.spline.design/d9ZCPsohRo4em4PQzklX/scene.splineswift")!
-
-//        SplineView(sceneFileURL: url).ignoresSafeArea(.all)
-        ActivityView()
-    }
-}
-
-// Preview
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityView()
+        ActivitySummaryView()
     }
 }
